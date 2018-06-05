@@ -1,3 +1,3 @@
-export default function () {
-  alert("hello!");
-};
+export default function() {
+  // alert("hello!");
+}
