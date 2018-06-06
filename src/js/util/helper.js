@@ -9,9 +9,7 @@ export default {
       tabs => {
         const curHighlightedTab = tabs[0];
         if (curHighlightedTab !== undefined) {
-          const url = new URL(
-            curHighlightedTab.url
-          );
+          const url = new URL(curHighlightedTab.url);
           console.log('--------');
           console.log(url);
           console.log('--------');
@@ -21,16 +19,10 @@ export default {
   },
   // 检测 DOMContentLoaded 是否已完成
   afterDOMCompleteDo(eventHandler) {
-    if (
-      document.readyState === 'complete' ||
-      document.readyState !== 'loading'
-    ) {
+    if (document.readyState === 'complete' || document.readyState !== 'loading') {
       eventHandler();
     } else {
-      document.addEventListener(
-        'DOMContentLoaded',
-        eventHandler
-      );
+      document.addEventListener('DOMContentLoaded', eventHandler);
     }
   },
 };
