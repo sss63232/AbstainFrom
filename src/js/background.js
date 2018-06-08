@@ -1,4 +1,9 @@
 import helper from '../js/util/helper';
+import dayjs from 'dayjs';
+
+console.log('------------------------------------');
+console.log(dayjs().$d);
+console.log('------------------------------------');
 
 helper.getCurTab(tab => {
   console.log('------------------------------------');
@@ -22,14 +27,11 @@ const tabsEvents = [
   `onZoomChange`,
 ];
 
-helper.listenTabEvent(
-  `onUpdated`,
-  (tabId, changeInfo, tab) => {
-    if (changeInfo.status === `complete`) {
-      const url = new URL(tab.url);
-      console.log(url.hostname);
-    }
+helper.listenTabEvent(`onUpdated`, (tabId, changeInfo, tab) => {
+  if (changeInfo.status === `complete`) {
+    const url = new URL(tab.url);
+    console.log(url.hostname);
   }
-);
+});
 
 // helper.listenTabEvent(`onHighlited`,())
