@@ -1,16 +1,10 @@
 import helper from '../js/util/helper';
 
-// chrome.tabs.onHighlighted.addListener(hightlightInfo => {
-//   console.log('------------------------------------');
-//   console.log(`onHighlighted`, hightlightInfo);
-//   console.log('------------------------------------');
-// });
-
-// chrome.tabs.onActivated.addListener(activeInfo => {
-//   console.log('------------------------------------');
-//   console.log(`onActivated`, activeInfo);
-//   console.log('------------------------------------');
-// });
+helper.getCurTab(tab => {
+  console.log('------------------------------------');
+  console.log(tab);
+  console.log('------------------------------------');
+});
 
 const tabsEvents = [
   `onCreated`,
@@ -28,10 +22,14 @@ const tabsEvents = [
   `onZoomChange`,
 ];
 
-helper.listen(`onUpdated`, (tabId, changeInfo, tab) => {
-  console.log('------------------------------------');
-  console.log('tabId: ', tabId);
-  console.log('changeInfo: ', changeInfo);
-  console.log('tab: ', tab);
-  console.log('------------------------------------');
-});
+helper.listenTabEvent(
+  `onUpdated`,
+  (tabId, changeInfo, tab) => {
+    if (changeInfo.status === `complete`) {
+      const url = new URL(tab.url);
+      console.log(url.hostname);
+    }
+  }
+);
+
+// helper.listenTabEvent(`onHighlited`,())
